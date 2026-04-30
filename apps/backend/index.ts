@@ -24,6 +24,19 @@ app.get("/user", async (req, res) => {
   res.send(response)
 })
 
+app.post("/user", async (req, res) => {
+  try {
+    const email = req.body.email;
+    const name = req.body.name;
+    const password = req.body.password;
+
+    const hash = await Bun.password.hash(password, process.env.BUN_PASSWORD_TEST as any);
+
+  } catch (error) {
+    console.error("Oops! Something went wrong")
+  }
+})
+
 app.listen(8000, () => {
   console.log('Everything Working!!')
 })
