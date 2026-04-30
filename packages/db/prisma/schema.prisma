@@ -16,6 +16,7 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+  password String
   posts Post[]
 }
 model Post {
@@ -25,4 +26,4 @@ model Post {
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
-} 
+}

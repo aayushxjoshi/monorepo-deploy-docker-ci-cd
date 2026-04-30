@@ -30,12 +30,23 @@ app.post("/user", async (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
 
-    const hash = await Bun.password.hash(password, process.env.BUN_PASSWORD_TEST as any);
+    const hash = await Bun.password.hash(password);
+
+    const response = await prisma.user.create({
+      data: {
+        name: name,
+        email: email,
+        password: hash
+      }
+    })
+
+    res.send(response)
 
   } catch (error) {
     console.error("Oops! Something went wrong")
   }
-})
+}
+)
 
 app.listen(8000, () => {
   console.log('Everything Working!!')
