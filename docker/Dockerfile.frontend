@@ -16,6 +16,6 @@ RUN bun install
 RUN bun run db:generate
 RUN bun run build
 
-EXPOSE 3000
+EXPOSE 5173
 
 CMD ["bun", "run", "start:frontend"]

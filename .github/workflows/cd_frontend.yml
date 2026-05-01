@@ -46,7 +46,7 @@ jobs:
           # Run new container
           sudo docker run -d \
             --name monorepo-frontend \
-            -p 3000:3000 \
+            -p 5173:5173 \
             -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
             aayushxjoshi/monorepo-frontend:${{ github.sha }}
 
