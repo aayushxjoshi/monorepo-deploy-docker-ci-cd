@@ -36,16 +36,16 @@ jobs:
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          docker pull aayushxjoshi/monorepo-backend:${{ github.sha }}
+          sudo docker pull aayushxjoshi/monorepo-backend:${{ github.sha }}
 
-          docker stop monorepo:backend || true
+          sudo docker stop monorepo:backend || true
 
-          docker rm monorepo-backend || true
+          sudo docker rm monorepo-backend || true
 
           # Run new container
-          docker run -d \
+          sudo docker run -d \
             --name monorepo-backend \
-            -p 3000:3000 \
+            -p 8000:8000 \
             -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
             aayushxjoshi/monorepo-backend:${{ github.sha }}
 
