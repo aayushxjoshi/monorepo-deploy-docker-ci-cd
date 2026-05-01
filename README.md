@@ -157,3 +157,17 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
 - [Configuration Options](https://turborepo.dev/docs/reference/configuration)
 - [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+
+
+
+## Docker Stuff
+
+There are three services and each of them has docker file.
+
+BUILD
+
+```sh
+DOCKER IMAGE EXAMPLE - docker build -t <IMAGE_NAME> -f ./docker/Dockerfile.<SERVICE> .
+```
+
+

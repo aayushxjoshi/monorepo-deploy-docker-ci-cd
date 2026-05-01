@@ -18,7 +18,7 @@ app.get("/user", async (req, res) => {
   const response = await prisma.user.create({
     data: {
       email: randomEmail,
-      name: randomName
+      name: randomName,
     }
   })
   res.send(response)
