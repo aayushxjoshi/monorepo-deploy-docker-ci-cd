@@ -31,7 +31,7 @@ app.post("/user", async (req, res) => {
     const password = req.body.password;
 
     const hash = await Bun.password.hash(password);
-
+    console.log("HELOOs")
     const response = await prisma.user.create({
       data: {
         name: name,
