@@ -172,3 +172,5 @@ DOCKER IMAGE EXAMPLE - docker build -t <IMAGE_NAME> -f ./docker/Dockerfile.<SERV
 
 Everyuthing is containerized and deployed on ec2 as of now.
 
+Done !!
+
