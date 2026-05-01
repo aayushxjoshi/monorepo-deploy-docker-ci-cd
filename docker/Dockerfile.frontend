@@ -19,6 +19,6 @@ RUN DATABASE_URL=${DATABASE_URL} bun run build
 
 RUN bun run db:generate
 
-EXPOSE 88000
+EXPOSE 3000
 
 CMD ["bun", "run", "start:websocket"]
