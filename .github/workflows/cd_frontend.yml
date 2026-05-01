@@ -26,3 +26,28 @@ jobs:
           build-args: DATABASE_URL=${{ secrets.DATABASE_URL }}
           push: true
           tags: aayushxjoshi/monorepo-frontend:${{github.sha}}
+
+      - name: Docker to SSH
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
+          chmod 600 ~/ssh_key
+
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@100.52.152.26 << 'EOF'
+
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+          sudo docker pull aayushxjoshi/monorepo-frontend:${{ github.sha }}
+
+          sudo docker stop monorepo:frontend || true
+
+          sudo docker rm monorepo-frontend || true
+
+          # Run new container
+          sudo docker run -d \
+            --name monorepo-frontend \
+            -p 3000:3000 \
+            -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+            aayushxjoshi/monorepo-frontend:${{ github.sha }}
+
+          EOF
